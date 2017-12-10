@@ -1,0 +1,14 @@
+{
+	"name": "shopping-list-server",
+	"version": "0.0.1",
+	"scripts": {
+		"start": "backpack"
+	},
+	"dependencies": {
+		"backpack-core": "^0.4.3",
+		"koa": "^2.0.0",
+		"koa-bodyparser": "^2.2.0",
+		"koa-cors": "0.0.16",
+		"koa-router": "^7.0.1"
+	}
+}
