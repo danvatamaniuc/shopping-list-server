@@ -1,0 +1,30 @@
+{
+	"users": [
+		{
+			"name": "string",
+			"email": "string",
+			"password": "string"
+		}
+	],
+	"products": [
+		{
+			"name": "string",
+			"quantity": "integer",
+			"category": "predefined strings",
+			"price": "integer"
+		}
+	],
+	"lists": [
+		{
+			"title": "string",
+			"products": ["Elements form 'products' + the following properties"
+				{
+					"comment": "string",
+					"checked": "boolean"	
+				}
+			],
+			"deadline": "(optional) date",
+			"participants": ["Elements from 'users"]
+		}
+	]
+}
