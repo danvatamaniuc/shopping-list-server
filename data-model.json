@@ -9,7 +9,6 @@
 	"products": [
 		{
 			"name": "string",
-			"quantity": "integer",
 			"category": "predefined strings",
 			"price": "integer"
 		}
@@ -20,7 +19,8 @@
 			"products": ["Elements form 'products' + the following properties"
 				{
 					"comment": "string",
-					"checked": "boolean"	
+					"checked": "boolean",
+					"quantity": "integer"						
 				}
 			],
 			"deadline": "(optional) date",
