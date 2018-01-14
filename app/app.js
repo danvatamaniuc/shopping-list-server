@@ -22,8 +22,10 @@ var userId = 0,
     productId = 0,
     listId = 0;
 
-function User(name, password, email) {
-  this.name = name;
+function User(username, password, firstname, lastname, email) {
+  this.username = username;
+  this.firstname = firstname;
+  this.lastname = lastname;
   this.password = password;
   this.email = email;
   this.id = userId++;
@@ -51,7 +53,7 @@ function ListProduct(stateProductId, quantity, checked, comment) {
   this.comment = comment;
 }
 
-state.users.push(new User("admin", "admin", "admin@infoworld.ro"));
+state.users.push(new User("admin", "admin", "first", "last", "admin@infoworld.ro"));
 
 state.products.push(new Product("Bread", "Food", "1"));
 state.products.push(new Product("Milk", "Food", "2"));
@@ -79,7 +81,7 @@ router.get('/users/:id', async (ctx, next) => {
 
 router.post('/users', async (ctx, next) => {
   let user = ctx.request.body,
-      stateUser = new User(user.name, user.password, user.email);
+      stateUser = new User(user.username, user.password, user.firstname, user.lastname, user.email);
 
   state.users.push(stateUser);
   ctx.body = stateUser;
@@ -123,6 +125,32 @@ router.delete('/products/:id', async (ctx, next) => {
 });
 
 //TODO: LIST CRUD
+
+//REGISTER && LOGIN
+router.post('/register', async (ctx, next) => {
+    let user = ctx.request.body,
+        newUser = new User(user.username, user.password, user.firstname, user.lastname, user.email);
+
+    state.users.push(newUser);
+    ctx.status = 200;
+    ctx.body = newUser;
+});
+router.post('/login', async (ctx, next) => {
+    let user = ctx.request.body,
+        username = user.username,
+        password = user.password,
+        foundUser = state.users.find((user) => user.username === username && user.password === password);
+
+    if (foundUser) {
+        ctx.status = 200;
+        ctx.body = foundUser;
+    } else {
+        ctx.status = 401;
+        ctx.body = "Unauthorized";
+    }
+
+});
+
 
 app
   .use(router.routes())
