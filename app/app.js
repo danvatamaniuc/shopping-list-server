@@ -2,6 +2,8 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const cors = require('koa-cors');
 const json = require('koa-json');
+const httpStatus = require('./utils/httpStatus');
+const authUtils = require('./utils/auth.utils');
 
 const app = new Koa();
 var Router = require('koa-router');
@@ -127,6 +129,7 @@ router.delete('/products/:id', async (ctx, next) => {
 //TODO: LIST CRUD
 
 //REGISTER && LOGIN
+
 router.post('/register', async (ctx, next) => {
     let user = ctx.request.body,
         newUser = new User(user.username, user.password, user.firstname, user.lastname, user.email);
@@ -135,22 +138,24 @@ router.post('/register', async (ctx, next) => {
     ctx.status = 200;
     ctx.body = newUser;
 });
+
 router.post('/login', async (ctx, next) => {
     let user = ctx.request.body,
-        username = user.username,
-        password = user.password,
-        foundUser = state.users.find((user) => user.username === username && user.password === password);
+    username = user.username,
+    email = user.email,
+    password = user.password,
+    foundUser = state.users.find((user) => user.email === email && user.username === username && user.password === password);
 
     if (foundUser) {
-        ctx.status = 200;
-        ctx.body = foundUser;
+        console.log('foundUser: ', foundUser)
+        ctx.status = httpStatus.CREATED;
+        ctx.body = {id_token: authUtils.createToken(foundUser)}
+        // ctx.body = foundUser;
     } else {
         ctx.status = 401;
         ctx.body = "Unauthorized";
     }
-
 });
-
 
 app
   .use(router.routes())
