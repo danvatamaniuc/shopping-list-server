@@ -6,6 +6,7 @@
 	},
 	"dependencies": {
 		"backpack-core": "^0.4.3",
+		"jsonwebtoken": "^8.1.0",
 		"koa": "^2.0.0",
 		"koa-bodyparser": "^2.2.0",
 		"koa-cors": "0.0.16",
