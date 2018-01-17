@@ -1,16 +1,31 @@
 {
-	"name": "shopping-list-server",
-	"version": "0.0.1",
-	"scripts": {
-		"start": "backpack"
-	},
-	"dependencies": {
-		"backpack-core": "^0.4.3",
-		"jsonwebtoken": "^8.1.0",
-		"koa": "^2.0.0",
-		"koa-bodyparser": "^2.2.0",
-		"koa-cors": "0.0.16",
-		"koa-json": "^2.0.2",
-		"koa-router": "^7.0.1"
-	}
+  "name": "shopping-list-server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon"
+  },
+  "dependencies": {
+    "backpack-core": "^0.4.3",
+    "jsonwebtoken": "^8.1.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^2.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-cors": "0.0.16",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^3.3.0",
+    "koa-router": "^7.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-spread": "^6.6.5",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.7.2",
+    "mocha": "^2.4.5",
+    "mockgoose": "^6.0.2",
+    "nodemon": "^1.9.1",
+    "should": "^8.3.1",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0"
+  }
 }

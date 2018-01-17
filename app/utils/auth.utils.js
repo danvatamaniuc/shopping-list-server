@@ -1,30 +1,28 @@
-const jwt = require('jsonwebtoken');
-const idToken = 'id_token'
+import jwt from 'jsonwebtoken'
+export const idToken = 'id_token'
 
-
-const jwtConfig = {
-    secret: 'my-secret'
+export const jwtConfig = {
+  secret: 'my-secret'
 };
 
-module.exports = {
-    createToken: function createToken(user) {
-        console.log('Create token', user)
-        return jwt.sign({email: user.email}, jwtConfig.secret, {expiresIn: 60 * 60 * 60 /*secs*/});
-    },
+export function createToken(user) {
+  console.log('Create token', user)
+  return jwt.sign({email: user.email, _id: user._id}, jwtConfig.secret, { expiresIn: 60*60*60 /*secs*/ });
+}
 
-    decodeToken: function decodeToken(token) {
-        return jwt.decode(token, jwtConfig.secret);
-    },
+export function decodeToken(token) {
+  return jwt.decode(token, jwtConfig.secret);
+}
 
-    verifyToken: function verifyToken(token) {
-        return new Promise(function (resolve) {
-            jwt.verify(token, jwtConfig.secret, null, function (err) {
-                if (err) {
-                    return resolve(false)
-                }
-                return resolve(true)
-            })
-        })
-    }
-};
+export async function verifyToken(token) {
+  return new Promise(async(resolve)=> {
+    jwt.verify(token, jwtConfig.secret, null, (err)=> {
+      if (err) {
+        return resolve(false)
+      }
+      return resolve(true)
+    })
+  })
+}
+
 

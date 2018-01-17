@@ -1,4 +1,4 @@
-module.exports = {
+export const httpStatus = {
     OK: 200,
     CREATED: 201,
     NOT_MODIFIED: 304,
